@@ -8,7 +8,7 @@ import retrofit2.http.Query
 import retrofit2.Response
 
 /**
- * Retrofit service interface used to fetch match detail service data from the REST service
+ * Retrofit service interface used to fetch top player stat detail service data from the REST service
  */
 interface TopPlayerStatsService {
     @GET("/matches/{matchId}/topplayerstats.json;{types}")
