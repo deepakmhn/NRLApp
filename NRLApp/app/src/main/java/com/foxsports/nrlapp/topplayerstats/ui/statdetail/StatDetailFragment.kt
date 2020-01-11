@@ -1,19 +1,20 @@
 package com.foxsports.nrlapp.topplayerstats.ui.statdetail
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.foxsports.nrlapp.databinding.StatDetailFragmentBinding
+import com.foxsports.nrlapp.topplayerstats.ui.topplayerstats.TopPlayerStatsFragmentDirections
 
 class StatDetailFragment : Fragment() {
 
     lateinit var binding: StatDetailFragmentBinding
     private val statComparisonAdapter =
         StatComparisonRecyclerViewAdapter(arrayListOf(), arrayListOf()) { playerDetail ->
-
+            findNavController().navigate(TopPlayerStatsFragmentDirections.playerDetailAction(playerDetail), null)
         }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -11,9 +11,9 @@ import com.foxsports.nrlapp.R
 import com.foxsports.nrlapp.data.Resource
 import com.foxsports.nrlapp.data.Status
 import com.foxsports.nrlapp.databinding.TopPlayerStatsFragmentBinding
-import com.foxsports.nrlapp.topplayerstats.data.MATCH_ID
-import com.foxsports.nrlapp.topplayerstats.data.STAT_TYPE_LIST
-import com.foxsports.nrlapp.topplayerstats.data.TOP_PLAYER_LIMIT
+import com.foxsports.nrlapp.topplayerstats.util.MATCH_ID
+import com.foxsports.nrlapp.topplayerstats.util.STAT_TYPE_LIST
+import com.foxsports.nrlapp.topplayerstats.util.TOP_PLAYER_LIMIT
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -43,7 +43,11 @@ class TopPlayerStatsFragment : DaggerFragment() {
 
     private fun initTopPlayerList() {
         topPlayersViewModel.uiModel.observe(this, Observer { it?.let { showTopPlayersUiState(it) } })
-        topPlayersViewModel.loadTopPlayerStats(MATCH_ID, STAT_TYPE_LIST, TOP_PLAYER_LIMIT)
+        topPlayersViewModel.loadTopPlayerStats(
+            MATCH_ID,
+            STAT_TYPE_LIST,
+            TOP_PLAYER_LIMIT
+        )
     }
 
     private fun showTopPlayersUiState(topPlayerDataResource: Resource<TopPlayerUiModel>) {

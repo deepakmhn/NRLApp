@@ -1,4 +1,4 @@
-package com.foxsports.nrlapp.topplayerstats.data
+package com.foxsports.nrlapp.topplayerstats.util
 
 const val MATCH_ID = "NRL20190101"
 val STAT_TYPE_LIST = listOf("fantasy_points","tackles","runs","run_metres")

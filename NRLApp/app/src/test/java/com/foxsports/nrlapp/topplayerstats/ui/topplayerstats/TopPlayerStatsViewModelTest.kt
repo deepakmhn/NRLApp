@@ -4,9 +4,9 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.foxsports.nrlapp.AppSchedulers
 import com.foxsports.nrlapp.data.Resource
-import com.foxsports.nrlapp.topplayerstats.data.MATCH_ID
-import com.foxsports.nrlapp.topplayerstats.data.STAT_TYPE_LIST
-import com.foxsports.nrlapp.topplayerstats.data.TOP_PLAYER_LIMIT
+import com.foxsports.nrlapp.topplayerstats.util.MATCH_ID
+import com.foxsports.nrlapp.topplayerstats.util.STAT_TYPE_LIST
+import com.foxsports.nrlapp.topplayerstats.util.TOP_PLAYER_LIMIT
 import com.foxsports.nrlapp.topplayerstats.data.model.TeamDetail
 import com.foxsports.nrlapp.topplayerstats.data.model.TopPlayerDetail
 import com.foxsports.nrlapp.topplayerstats.data.model.TopPlayerStatDetail

@@ -19,12 +19,8 @@ internal abstract class TopPlayersModule {
         internal fun providesTopPlayerStatsViewModelFactory(
             repository: TopPlayerStatsRepository,
             schedulers: AppSchedulers
-        )
-                : TopPlayerStatsViewModelFactory {
-            return TopPlayerStatsViewModelFactory(
-                repository,
-                schedulers
-            )
+        ): TopPlayerStatsViewModelFactory {
+            return TopPlayerStatsViewModelFactory(repository, schedulers)
         }
     }
 

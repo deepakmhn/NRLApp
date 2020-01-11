@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+
+        <variable
+                name="playerDetail"
+                type="com.foxsports.nrlapp.playerdetail.ui.PlayerDetailUiModel"/>
+        <variable
+                name="viewModel"
+                type="com.foxsports.nrlapp.playerdetail.ui.PlayerDetailViewModel"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/content_margin"
+            tools:context=".playerdetail.ui.PlayerDetailFragment">
+
+        <ImageView
+                android:id="@+id/playerImage"
+                android:layout_width="@dimen/headshot_image_size"
+                android:layout_height="@dimen/headshot_image_size"
+                android:src="@mipmap/ic_launcher"
+                app:playerId='@{playerDetail.playerId}'
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAccessibility="no"/>
+
+        <TextView
+                android:id="@+id/textPlayerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{playerDetail.playerName}"
+                app:layout_constraintTop_toBottomOf="@id/playerImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_horizontal"
+                style="@style/TextTitle"
+                tools:text="Tackles"/>
+
+        <TextView
+                android:id="@+id/textPlayerPosition"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{playerDetail.position}"
+                app:layout_constraintTop_toBottomOf="@id/textPlayerName"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_horizontal"
+                style="@style/TextTitle"
+                tools:text="Tackles"/>
+
+        <TextView
+                android:id="@+id/textLastMatchStats"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/last_match_stats_title"
+                app:layout_constraintTop_toBottomOf="@id/textPlayerPosition"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="center_horizontal"
+                android:visibility='@{playerDetail.success ? View.VISIBLE : View.GONE}'
+                style="@style/TextDetail"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/lastGameStatsRv"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/textLastMatchStats"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:statsList="@{playerDetail.lastMatchStats}"
+                android:indeterminate="true"/>
+
+        <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility='@{viewModel.isLoading ? View.VISIBLE : View.GONE}'/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -6,11 +6,16 @@ import com.foxsports.nrlapp.BuildConfig
 import com.foxsports.nrlapp.NrlApp
 import com.foxsports.nrlapp.USER_KEY
 import com.foxsports.nrlapp.data.ClientAuthInterceptor
-import com.foxsports.nrlapp.topplayerstats.data.PLAYER_STATS_ENDPOINT
+import com.foxsports.nrlapp.playerdetail.data.api.PlayerDetailService
+import com.foxsports.nrlapp.playerdetail.data.repository.PlayerDetailRemoteDataSource
+import com.foxsports.nrlapp.playerdetail.data.repository.PlayerDetailRepository
+import com.foxsports.nrlapp.playerdetail.di.PlayerDetailModule
+import com.foxsports.nrlapp.playerdetail.util.PLAYER_DETAILS_ENDPOINT
 import com.foxsports.nrlapp.topplayerstats.data.api.TopPlayerStatsService
 import com.foxsports.nrlapp.topplayerstats.data.repository.TopPlayerStatsRemoteDataSource
 import com.foxsports.nrlapp.topplayerstats.data.repository.TopPlayerStatsRepository
 import com.foxsports.nrlapp.topplayerstats.di.TopPlayersModule
+import com.foxsports.nrlapp.topplayerstats.util.PLAYER_STATS_ENDPOINT
 import com.foxsports.nrlapp.util.NetManager
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import dagger.Module
@@ -22,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
-@Module(includes = [TopPlayersModule::class])
+@Module(includes = [TopPlayersModule::class, PlayerDetailModule::class])
 class AppModule {
 
     @Provides
@@ -38,6 +43,11 @@ class AppModule {
         netManager: NetManager,
         topPlayerStatsDataSource: TopPlayerStatsRemoteDataSource
     ) = TopPlayerStatsRepository(netManager, topPlayerStatsDataSource)
+
+    @Singleton
+    @Provides
+    fun providePlayerDetailRepository(netManager: NetManager, playerDetailDataSource: PlayerDetailRemoteDataSource) =
+        PlayerDetailRepository(netManager, playerDetailDataSource)
 
     @Provides
     fun provideOkHttpClient(interceptor: HttpLoggingInterceptor): OkHttpClient =
@@ -63,5 +73,16 @@ class AppModule {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
             .create(TopPlayerStatsService::class.java)
+
+    @Singleton
+    @Provides
+    fun providePlayerDetailService(client: OkHttpClient): PlayerDetailService =
+        Retrofit.Builder()
+            .baseUrl(PLAYER_DETAILS_ENDPOINT)
+            .callFactory(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+            .create(PlayerDetailService::class.java)
 
 }

@@ -11,7 +11,7 @@ import retrofit2.http.Path
  */
 interface PlayerDetailService {
 
-    @GET("league/series/{seriesId}/seasons/{seasonId}/teams/{teamId}/players/{playerId}/detailedstats.json")
+    @GET("3.0/api/sports/league/series/{seriesId}/seasons/{seasonId}/teams/{teamId}/players/{playerId}/detailedstats.json")
     fun getPlayerDetail(
         @Path("seriesId") seriesId: Int,
         @Path("seasonId") seasonId: Int,

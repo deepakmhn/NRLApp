@@ -2,4 +2,6 @@
     <string name="app_name">NRLApp</string>
     <string name="top_players_title">Top players</string>
     <string name="error_loading_data">Error loading data, Please try again later</string>
+    <string name="last_match_stats_title">Last match stats</string>
+    <string name="player_detail_title">Player detail</string>
 </resources>

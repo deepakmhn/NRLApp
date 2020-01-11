@@ -9,6 +9,20 @@
             android:name="com.foxsports.nrlapp.topplayerstats.ui.topplayerstats.TopPlayerStatsFragment"
             android:label="@string/top_players_title"
             tools:layout="@layout/top_player_stats_fragment">
+        <action
+                android:id="@+id/player_detail_action"
+                app:destination="@id/player_detail_dest">
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/player_detail_dest"
+            android:name="com.foxsports.nrlapp.playerdetail.ui.PlayerDetailFragment"
+            android:label="@string/player_detail_title"
+            tools:layout="@layout/player_detail_fragment">
+        <argument
+                android:name="playerDetail"
+                app:argType="com.foxsports.nrlapp.topplayerstats.data.model.TopPlayerDetail"/>
     </fragment>
 
 </navigation>
