@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="playerADetail"
+                type="com.foxsports.nrlapp.topplayerstats.data.model.TopPlayerDetail"/>
+
+        <variable
+                name="playerBDetail"
+                type="com.foxsports.nrlapp.topplayerstats.data.model.TopPlayerDetail"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/content_margin">
+
+        <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/center_align_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5"/>
+
+        <TextView
+                android:id="@+id/team_a_player_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{Integer.toString(playerADetail.statValue)}'
+                android:layout_marginEnd="@dimen/content_margin"
+                app:layout_constraintEnd_toStartOf="@id/center_align_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/TextStatValue"
+                tools:text="6"/>
+
+        <TextView
+                android:id="@+id/team_b_player_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{Integer.toString(playerBDetail.statValue)}'
+                android:layout_marginStart="@dimen/content_margin"
+                app:layout_constraintStart_toEndOf="@id/center_align_guideline"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/TextStatValue"
+                tools:text="4"/>
+
+        <ImageView
+                android:id="@+id/team_a_player_image"
+                android:layout_width="@dimen/thumbnail_image_size"
+                android:layout_height="@dimen/thumbnail_image_size"
+                android:src="@mipmap/ic_launcher"
+                app:playerId='@{playerADetail.id}'
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAccessibility="no"/>
+
+        <TextView
+                android:id="@+id/team_a_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{playerADetail.shortName}'
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/team_a_player_image"
+                style="@style/TextDetail"
+                tools:text="Short name"/>
+
+        <TextView
+                android:id="@+id/team_a_player_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{playerADetail.jumperNumber +"."+playerADetail.position}'
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/team_a_player_name"
+                style="@style/TextDetail"
+                tools:text="9.Position"/>
+
+        <ImageView
+                android:id="@+id/team_b_player_image"
+                android:layout_width="@dimen/thumbnail_image_size"
+                android:layout_height="@dimen/thumbnail_image_size"
+                android:src="@mipmap/ic_launcher"
+                android:scaleType="centerCrop"
+                app:playerId='@{playerBDetail.id}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:importantForAccessibility="no"/>
+
+        <TextView
+                android:id="@+id/team_b_player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{playerBDetail.shortName}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/team_b_player_image"
+                style="@style/TextDetail"
+                tools:text="Short name"/>
+
+        <TextView
+                android:id="@+id/team_b_player_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text='@{playerBDetail.jumperNumber +"."+playerBDetail.position}'
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/team_b_player_name"
+                style="@style/TextDetail"
+                tools:text="9.Position"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

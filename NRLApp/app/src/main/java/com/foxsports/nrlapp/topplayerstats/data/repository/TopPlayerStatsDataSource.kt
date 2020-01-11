@@ -5,5 +5,5 @@ import com.foxsports.nrlapp.topplayerstats.data.model.TopPlayerStatDetail
 import io.reactivex.Single
 
 interface TopPlayerStatsDataSource {
-    fun getMatchDetailData(matchId: String, userIds: List<String>, limit: Int): Single<Resource<List<TopPlayerStatDetail>>>
+    fun getMatchDetailData(matchId: String, types: List<String>, limit: Int): Single<Resource<List<TopPlayerStatDetail>>>
 }

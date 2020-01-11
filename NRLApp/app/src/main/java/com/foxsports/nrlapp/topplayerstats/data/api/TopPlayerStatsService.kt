@@ -11,7 +11,7 @@ import retrofit2.Response
  * Retrofit service interface used to fetch top player stat detail service data from the REST service
  */
 interface TopPlayerStatsService {
-    @GET("/matches/{matchId}/topplayerstats.json;{types}")
+    @GET("3.0/api/sports/league//matches/{matchId}/topplayerstats.json;{types}")
     fun getMatchDetail(
         @Path("matchId") matchId: String,
         @Path("types") types: String,

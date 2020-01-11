@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NRLApp</string>
+    <string name="top_players_title">Top players</string>
+    <string name="error_loading_data">Error loading data, Please try again later</string>
 </resources>

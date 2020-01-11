@@ -9,7 +9,7 @@ import javax.inject.Inject
 class TopPlayerStatsRemoteDataSource @Inject constructor(private val service: TopPlayerStatsService) : TopPlayerStatsDataSource {
 
     override fun getMatchDetailData(matchId: String, types: List<String>, limit: Int): Single<Resource<List<TopPlayerStatDetail>>> {
-        val requestTypes = types.joinToString(";")
+        val requestTypes = types.map { "type=$it"}.joinToString(";")
         return service.getMatchDetail(matchId, requestTypes, limit).map { response ->
             if (response.isSuccessful) {
                 response.body()?.let { Resource.success(it) } ?: Resource.error(null)
