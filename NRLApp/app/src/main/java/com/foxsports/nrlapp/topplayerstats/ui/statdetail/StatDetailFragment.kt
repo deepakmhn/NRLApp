@@ -32,7 +32,7 @@ class StatDetailFragment : Fragment() {
     }
 
     companion object {
-        private const val STAT_DETAIL = "STAT_DETAIL"
+        const val STAT_DETAIL = "STAT_DETAIL"
         fun createFragment(statDetail: StatDetailUiModel) =
             StatDetailFragment().apply { arguments = Bundle().apply { putParcelable(STAT_DETAIL, statDetail) } }
 

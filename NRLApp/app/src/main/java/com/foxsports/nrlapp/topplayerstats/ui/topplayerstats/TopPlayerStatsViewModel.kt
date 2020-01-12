@@ -32,6 +32,7 @@ class TopPlayerStatsViewModel @Inject constructor(
         compositeDisposable.add(
             repository.getMatchDetailData(matchId, types, limit)
                 .subscribeOn(schedulers.io())
+                .observeOn(schedulers.computation())
                 .map { resource -> getTopPlayerUiModelResource(resource) }
                 .observeOn(schedulers.mainThread())
                 .subscribe(

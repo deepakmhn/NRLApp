@@ -32,6 +32,7 @@ class PlayerDetailViewModel @Inject constructor(
         compositeDisposable.add(
             repository.getPlayerDetailData(seriesId, seasonId, teamId, playerId)
                 .subscribeOn(schedulers.io())
+                .observeOn(schedulers.computation())
                 .map { resource -> getPlayerDetailModelResource(resource) }
                 .observeOn(schedulers.mainThread())
                 .subscribe(
